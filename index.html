@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
 <head>
-    <title>Under Construction</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script>
 </head>
 <body>
-    <h1>Under Construction</h1>
-    <p>This Github user page is under construction. Be patient.</p>
+  <div width="50%">
+  <canvas id="bar-chart" width="400"></canvas>
+</div>
+<script type="text/javascript">
+  new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: [2478,5267,734,784,433]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+});
+</script>
 </body>
 </html>
