@@ -42,6 +42,12 @@ var chart_options = {
           },
         },
       }],
+             plugins: {
+            datasource: {
+              type: 'json',
+                url: '/data.json'
+            }
+          }
     }
 };
 
@@ -50,7 +56,8 @@ var chart_options = {
     type: 'line',
 data: {
           labels: data.labels,
-            datasets: [{
+            datasets: [
+            {
               borderWidth: 2,
               borderColor: '#367E93',
               pointBorderColor: '#367E93',
@@ -76,20 +83,10 @@ data: {
                 }
             },]
           },
-       plugins: {
-            datasource: {
-              type: 'json',
-                url: '/data.json'
-            }
-          }
+
         }
       });
 </script>
 </body>
 </html>
 
-{
-        type: 'line',
-        
-      options: chart_options
-    });
