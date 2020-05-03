@@ -11,18 +11,59 @@
   <canvas id="bar-chart" width="400"></canvas>
 </div>
 <script type="text/javascript">
+  var chart_font_size = window.innerWidth < 500 ? 11 : 14;
+var chart_options = {
+    legend: { display: false },
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        type: 'time',
+        gridLines: {
+          display: true,
+        },
+        ticks: {
+          minRotation: 45,
+          fontSize: chart_font_size,
+          fontColor: '#1A2B2B',
+          autoSkip: false,
+          maxTicksLimit: 15,
+        },
+      }],
+      yAxes: [{
+        gridLines: {
+          drawBorder: false,
+        },
+        ticks: {
+          fontSize: 14,
+          fontColor: '#1A2B2B',
+          beginAtZero: true,
+          userCallback: function(value, index, values) {
+            return value.toLocaleString();
+          },
+        },
+      }],
+    }
+};
+
   var ctx = document.getElementById("bar-chart");
   var chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      datasets: [{
-        xAxisID: 'date',
-        yAxisID: 'count',
-        backgroundColor: 'transparent',
-        borderColor: 'rgb(255, 99, 132)',
-        pointBackgroundColor: 'rgb(255, 99, 132)',
-        tension: 0,
-        fill: false}]
+    type: 'line',
+data: {
+          labels: data.labels,
+            datasets: [{
+              borderWidth: 2,
+              borderColor: '#367E93',
+              pointBorderColor: '#367E93',
+              pointBackgroundColor: '#fff',
+              pointBorderWidth: 3,
+              pointHoverRadius: 3,
+              pointHoverBackgroundColor: '#367E93',
+              pointHoverBorderColor: '#367E93',
+              pointHoverBorderWidth: 5,
+              pointRadius: 1,
+              pointHitRadius: 5,
+              data: data.datapoints
+            }]
       },
       plugins: [ChartDataSource],
       options: {
@@ -37,7 +78,8 @@
           },
        plugins: {
             datasource: {
-                url: '/data.csv'
+              type: 'json',
+                url: '/data.json'
             }
           }
         }
@@ -45,3 +87,9 @@
 </script>
 </body>
 </html>
+
+{
+        type: 'line',
+        
+      options: chart_options
+    });
