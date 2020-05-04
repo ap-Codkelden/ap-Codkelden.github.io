@@ -13,47 +13,8 @@
   <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script> 
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script> 
   -->
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      font-size: 12pt;
-    }
-    .chart-title {
-      font-family: 'Roboto';
-      text-align: center;
-      font-weight: bold;
-      color: #000;
-      font-size: 16pt;
-    }
-  canvas {
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-  }
-  .chart {
-     width: 60%;
-     margin: 0 auto;
-  }
-      .chartjs-tooltip {
-      opacity: 1;
-      position: absolute;
-      background: rgba(0, 0, 0, .7);
-      color: white;
-      border-radius: 3px;
-      -webkit-transition: all .1s ease;
-      transition: all .1s ease;
-      pointer-events: none;
-      -webkit-transform: translate(-50%, 0);
-      transform: translate(-50%, 0);
-      padding: 4px;
-    }
+  <link rel="stylesheet" href="style.css">
 
-    .chartjs-tooltip-key {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-    }
-  </style>
 </head>
 <body>
   <div class="chart">
@@ -64,23 +25,18 @@
 <script type="text/javascript">
 var customTooltips = function(tooltip) {
       $(this._chart.canvas).css('cursor', 'pointer');
-
       var positionY = this._chart.canvas.offsetTop;
       var positionX = this._chart.canvas.offsetLeft;
-
       $('.chartjs-tooltip').css({
         opacity: 0,
       });
-
       if (!tooltip || !tooltip.opacity) {
         return;
       }
-
       if (tooltip.dataPoints.length > 0) {
         tooltip.dataPoints.forEach(function(dataPoint) {
           var content = [moment(dataPoint.xLabel).format('MMM D'), dataPoint.yLabel].join(': ');
           var $tooltip = $('#tooltip');
-
           $tooltip.html(content);
           $tooltip.css({
             opacity: 1,
@@ -91,34 +47,35 @@ var customTooltips = function(tooltip) {
       }
     };
 
-  var chart_font_size = window.innerWidth < 500 ? 11 : 14;
+var chart_font_size = window.innerWidth < 500 ? 11 : 14;
 var chart_options = {
-    legend: { display: false },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
+  legend: { display: false },
+  maintainAspectRatio: true,
+  scales: {
+    xAxes: [
+      {
         type: 'time',
         time: {
-                unit: 'day'
-              },
-        labels: ["2020-03-25","2020-03-26","2020-03-27","2020-03-28","2020-03-29",
-                "2020-03-30","2020-03-31","2020-04-01","2020-04-02","2020-04-03","2020-04-04",
-                "2020-04-05","2020-04-06","2020-04-07","2020-04-08","2020-04-09","2020-04-10",
-                "2020-04-11","2020-04-12","2020-04-13","2020-04-14","2020-04-15","2020-04-16",
-                "2020-04-17","2020-04-18","2020-04-19","2020-04-20","2020-04-21","2020-04-22",
-                "2020-04-23","2020-04-24","2020-04-25","2020-04-26","2020-04-27","2020-04-28",
-                "2020-04-29","2020-04-30","2020-05-01","2020-05-02","2020-05-03"
-                ],
-        gridLines: {
+          unit: 'day'
+        },
+      labels: ["2020-03-25","2020-03-26","2020-03-27","2020-03-28","2020-03-29",
+      "2020-03-30","2020-03-31","2020-04-01","2020-04-02","2020-04-03","2020-04-04",
+      "2020-04-05","2020-04-06","2020-04-07","2020-04-08","2020-04-09","2020-04-10",
+      "2020-04-11","2020-04-12","2020-04-13","2020-04-14","2020-04-15","2020-04-16",
+      "2020-04-17","2020-04-18","2020-04-19","2020-04-20","2020-04-21","2020-04-22",
+      "2020-04-23","2020-04-24","2020-04-25","2020-04-26","2020-04-27","2020-04-28",
+      "2020-04-29","2020-04-30","2020-05-01","2020-05-02","2020-05-03"
+      ],
+      gridLines: {
           display: true,
         },
-        ticks: {
+      ticks: {
           minRotation: 45,
           fontSize: chart_font_size,
           fontColor: '#1A2B2B',
           autoSkip: false,
           maxTicksLimit: 15,
-        },
+      },
       }],
       yAxes: [{
         gridLines: {
