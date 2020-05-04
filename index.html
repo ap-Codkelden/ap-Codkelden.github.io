@@ -14,14 +14,29 @@
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datasource@0.1.0"></script> 
   -->
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
+  <h1 class="title">Оперативний моніторинг ситуації довкола COVID-19</h1>
+  <div class="text">
+  <p>На сторінці представлена інформація щодо виявлених випадків захворювання 
+  на COVID-19 по <b>місту Кривий Ріг</b> Дніпропетровської області.</p>
+  <p>Офіційний інформаційний портал уряду, де оприлюднюється інформація 
+  щодо коронавірусної хвороби 2019 в Україні, <a href="https://covid19.gov.ua/">знаходиться 
+  тут</a>. Також можна переглянути сторінку з інформацією щодо коронавірусної 
+  хвороби <a href="https://moz.gov.ua/koronavirus-2019-ncov">на офіційному сайті МОЗ.</a></p>
+</div>
   <div class="chart">
-    <p class="chart-title">Загальна кількість виявлених випадків</p>
+    <p class="chart-title">Загальна кількість виявлених випадків<br/>по місту Кривий Ріг</p>
     <canvas id="bar-chart" height="250" width="700"></canvas>
     <div class="chartjs-tooltip" id="tooltip"></div>
   </div>
+   <div class="text"><p>Джерело даних для цієї сторінки&nbsp;&mdash; 
+    <a href="https://github.com/VasiaPiven/covid19_ua/">відкриті дані</a> Національної 
+    служби здоров&#146;я України з розділу &laquo;<a href="https://nszu.gov.ua/covid">Детальна 
+    інформація про коронавірус COVID-19</a>&raquo; на офіційному сайті.</p>
+</div>
+
+
 <script type="text/javascript">
 var customTooltips = function(tooltip) {
       $(this._chart.canvas).css('cursor', 'pointer');

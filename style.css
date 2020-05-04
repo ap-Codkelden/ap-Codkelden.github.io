@@ -1,6 +1,14 @@
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 12pt;
+  font-size: 14pt;
+}
+.title {
+    font-size: 22pt;
+    text-align: center;
+}
+.text {
+    width: 75%;
+    margin: 0 auto;
 }
 .chart-title {
   font-family: 'Roboto';
