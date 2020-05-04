@@ -64,7 +64,6 @@ var customTooltips = function(tooltip) {
       }
 
       if (tooltip.dataPoints.length > 0) {
-        console.log(tooltip);
         tooltip.dataPoints.forEach(function(dataPoint) {
           var content = [moment(dataPoint.xLabel).format('MMM D'), dataPoint.yLabel].join(': ');
           var $tooltip = $('#tooltip');
@@ -81,7 +80,10 @@ var customTooltips = function(tooltip) {
 
   var chart_font_size = window.innerWidth < 500 ? 11 : 14;
 var chart_options = {
-  title: 'ccccc',
+  title: {
+    text: 'ccccc',
+    display: true,
+  },
     legend: { display: false },
     maintainAspectRatio: false,
     scales: {
