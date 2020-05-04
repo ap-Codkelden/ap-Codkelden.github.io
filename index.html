@@ -17,6 +17,11 @@
     body {
       font-family: 'Roboto', sans-serif;
     }
+    .chart-title {
+      font-family: 'Roboto';
+      text-align: center;
+      font-weight: bold;
+    }
   canvas {
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -49,6 +54,7 @@
 </head>
 <body>
   <div class="chart">
+    <p class="chart-title">Загальна кількість виявлених випадків</p>
     <canvas id="bar-chart" height="250" width="700"></canvas>
     <div class="chartjs-tooltip" id="tooltip"></div>
   </div>
@@ -84,13 +90,6 @@ var customTooltips = function(tooltip) {
 
   var chart_font_size = window.innerWidth < 500 ? 11 : 14;
 var chart_options = {
-  title: {
-    text: 'Загальна кількість виявлених випадків',
-    display: true,
-    fontFamily: 'Roboto', 
-    fontSize: 16,
-    fontStyle: 'bold'
-  },
     legend: { display: false },
     maintainAspectRatio: false,
     scales: {
