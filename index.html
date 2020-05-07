@@ -23,31 +23,28 @@
 </div>
   <div class="chart">
     <p class="chart-title">Загальна кількість виявлених випадків<br/>по місту Кривий Ріг</p>
-    <canvas id="bar-chart" height="250" width="700"></canvas>
+    <!-- <canvas id="bar-chart" height="250" width="700"></canvas> -->
+    <canvas id="bar-chart"></canvas>
     <div class="chartjs-tooltip" id="tooltip"></div>
   </div>
-   <div class="text"><p>Джерело даних для цієї сторінки&nbsp;&mdash; 
-    <a href="https://github.com/VasiaPiven/covid19_ua/">відкриті дані</a> Національної 
-    служби здоров&#146;я України з розділу &laquo;<a href="https://nszu.gov.ua/covid">Детальна 
-    інформація про коронавірус COVID-19</a>&raquo; на офіційному сайті.</p>
-</div>
-
 
 <script type="text/javascript">
-var covid_data = (function() {
+function json_load(jsonfile) {
   var json = null;
   $.ajax({
     'async': false,
     'global': false,
-    'url': "data.json",
+    'url': jsonfile,
     'dataType': "json",
     'success': function(data) {
       json = data;
     }
   });
   return json;
-})();
-
+};
+</script>
+<script>
+var total_confirmed = json_load("total_cases.json");
 var customTooltips = function(tooltip) {
       $(this._chart.canvas).css('cursor', 'pointer');
       var positionY = this._chart.canvas.offsetTop;
@@ -74,20 +71,16 @@ var customTooltips = function(tooltip) {
 
 var chart_font_size = window.innerWidth < 500 ? 11 : 14;
 var chart_options = {
+  responsive: true, 
   legend: { display: false },
   maintainAspectRatio: true,
   scales: {
-    xAxes: [
-      {
-        type: 'time',
-        time: {
-          unit: 'day'
-        },
-      labels: covid_data.labels,
-      gridLines: {
-          display: true,
-        },
-      ticks: {
+    xAxes: [{
+     type: 'time',
+     time: {unit: 'day'},
+     labels: total_confirmed.labels,
+     gridLines: {display: true,},
+     ticks: {
           minRotation: 45,
           fontSize: chart_font_size,
           fontColor: '#1A2B2B',
@@ -119,7 +112,7 @@ var chart_options = {
 
   var ctx = document.getElementById("bar-chart");
   var data = {
-    labels: covid_data.labels,
+    labels: total_confirmed.labels,
         datasets: [
               {borderWidth: 2,
               borderColor: '#367E93',
@@ -132,7 +125,7 @@ var chart_options = {
               pointHoverBorderWidth: 5,
               pointRadius: 1,
               pointHitRadius: 5,
-                data: covid_data.data
+                data: total_confirmed.data
                     }
                     ]
                   };
@@ -141,6 +134,73 @@ var chart_options = {
     data: data,
     options: chart_options
 });
+</script>
+
+<div class="chart">
+    <p class="chart-title">Кількість виявлених випадків по місту Кривий Ріг<br/>в розрізі днів</p>
+    <canvas id="bar-daily"></canvas>
+    <div class="chartjs-tooltip" id="tooltip"></div>
+  </div>
+<div class="text"><p>Джерело даних для цієї сторінки&nbsp;&mdash; 
+    <a href="https://github.com/VasiaPiven/covid19_ua/">відкриті дані</a> Національної 
+    служби здоров&#146;я України з розділу &laquo;<a href="https://nszu.gov.ua/covid">Детальна 
+    інформація про коронавірус COVID-19</a>&raquo; на офіційному сайті.</p>
+</div>
+
+<script>
+var daily_confirmed = json_load("daily_confirmed.json");
+var barChartData = {
+    labels: daily_confirmed.labels,
+    datasets: [{
+        backgroundColor: '#367E93',
+        borderWidth: 0,
+        barThickness: 'flex',
+        barPercentage: .5,
+        categoryPercentage: 1,
+        //maxBarThickness: 12,
+        data: daily_confirmed.data
+      }]
+
+    };
+      var ctx = document.getElementById('bar-daily');
+      var chart = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData,
+        options: {
+          //barValueSpacing: 10,
+          responsive: true, 
+          legend: { display: false }, 
+          title: {display: false},
+          scales: {
+            xAxes: [
+              {
+                offset: true, // no bars beyond chart body
+                type: 'time',
+                distribution: 'series', // omit empty
+                time: {unit: 'day'},
+                ticks: {
+                  minRotation: 45,
+                  fontSize: chart_font_size,
+                  fontColor: '#1A2B2B',
+                  autoSkip: false,
+                  //maxTicksLimit: 15,
+                  },
+              }],
+            yAxes: [{
+                      gridLines: {
+                        drawBorder: false,
+                      },
+                      ticks: {
+                        fontSize: chart_font_size,
+                        fontColor: '#000000',
+                        beginAtZero: true,
+                      },
+                  }],
+            },
+           tooltips: {enabled: false,
+                  custom: customTooltips}
+          }
+        });
 </script>
 </body>
 </html>
