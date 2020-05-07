@@ -2,14 +2,23 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 14pt;
 }
+
+canvas {
+-moz-user-select: none;
+-webkit-user-select: none;
+-ms-user-select: none;
+}
+
 .title {
     font-size: 22pt;
     text-align: center;
 }
+
 .text {
     width: 75%;
     margin: 0 auto;
 }
+
 .chart-title {
   font-family: 'Roboto';
   text-align: center;
@@ -17,16 +26,13 @@ body {
   color: #000;
   font-size: 16pt;
 }
-canvas {
--moz-user-select: none;
--webkit-user-select: none;
--ms-user-select: none;
-}
+
 .chart {
- width: 60%;
+ width: 50%;
  margin: 0 auto;
 }
-  .chartjs-tooltip {
+
+.chartjs-tooltip {
   opacity: 1;
   position: absolute;
   background: rgba(0, 0, 0, .7);
