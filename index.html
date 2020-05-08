@@ -25,11 +25,26 @@
   тут</a>. Також можна переглянути сторінку з інформацією щодо коронавірусної 
   хвороби <a href="https://moz.gov.ua/koronavirus-2019-ncov">на офіційному сайті МОЗ.</a></p>
 </div>
-  <div class="chart">
+
+<div class="chart">
     <p class="chart-title">Загальна кількість виявлених випадків<br/>по місту Кривий Ріг</p>
     <canvas id="bar-chart"></canvas>
     <div class="chartjs-tooltip"></div>
   </div>
+
+<div class="chart">
+    <p class="chart-title">Кількість виявлених випадків по місту Кривий Ріг<br/>в розрізі днів</p>
+    <canvas id="bar-daily"></canvas>
+    <div class="chartjs-tooltip"></div>
+  </div>
+
+  <footer class="footer">
+    <p>Джерело даних цієї сторінки&nbsp;&mdash; 
+    <a href="https://github.com/VasiaPiven/covid19_ua/">відкриті дані</a> Національної 
+    служби здоров&#146;я України з розділу &laquo;<a href="https://nszu.gov.ua/covid">Детальна 
+    інформація про коронавірус COVID-19</a>&raquo; на офіційному сайті.</p>
+    <p><img src="github.svg" class="svg-logo"/><a style="margin-left: 1ex;" href="https://github.com/ap-Codkelden/ap-Codkelden.github.io">GitHub</a></p>
+</footer>
 
 <script type="text/javascript">
 function json_load(jsonfile) {
@@ -138,17 +153,6 @@ var chart_options = {
     options: chart_options
 });
 </script>
-
-<div class="chart">
-    <p class="chart-title">Кількість виявлених випадків по місту Кривий Ріг<br/>в розрізі днів</p>
-    <canvas id="bar-daily"></canvas>
-    <div class="chartjs-tooltip"></div>
-  </div>
-<footer class="text footer"><p>Джерело даних цієї сторінки&nbsp;&mdash; 
-    <a href="https://github.com/VasiaPiven/covid19_ua/">відкриті дані</a> Національної 
-    служби здоров&#146;я України з розділу &laquo;<a href="https://nszu.gov.ua/covid">Детальна 
-    інформація про коронавірус COVID-19</a>&raquo; на офіційному сайті.</p>
-</footer>
 
 <script>
 var daily_confirmed = json_load("daily_confirmed.json");
