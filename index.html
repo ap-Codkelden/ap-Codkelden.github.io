@@ -28,7 +28,7 @@
   <div class="chart">
     <p class="chart-title">Загальна кількість виявлених випадків<br/>по місту Кривий Ріг</p>
     <canvas id="bar-chart"></canvas>
-    <div class="chartjs-tooltip" id="tooltip"></div>
+    <div class="chartjs-tooltip"></div>
   </div>
 
 <script type="text/javascript">
@@ -61,7 +61,7 @@ var customTooltips = function(tooltip) {
       if (tooltip.dataPoints.length > 0) {
         tooltip.dataPoints.forEach(function(dataPoint) {
           var content = [moment(dataPoint.xLabel).format('MMM D'), dataPoint.yLabel].join(': ');
-          var $tooltip = $('#tooltip');
+          var $tooltip = $('.chartjs-tooltip');
           $tooltip.html(content);
           $tooltip.css({
             opacity: 1,
@@ -142,13 +142,13 @@ var chart_options = {
 <div class="chart">
     <p class="chart-title">Кількість виявлених випадків по місту Кривий Ріг<br/>в розрізі днів</p>
     <canvas id="bar-daily"></canvas>
-    <div class="chartjs-tooltip" id="tooltip"></div>
+    <div class="chartjs-tooltip"></div>
   </div>
-<div class="text"><p>Джерело даних для цієї сторінки&nbsp;&mdash; 
+<footer class="text footer"><p>Джерело даних цієї сторінки&nbsp;&mdash; 
     <a href="https://github.com/VasiaPiven/covid19_ua/">відкриті дані</a> Національної 
     служби здоров&#146;я України з розділу &laquo;<a href="https://nszu.gov.ua/covid">Детальна 
     інформація про коронавірус COVID-19</a>&raquo; на офіційному сайті.</p>
-</div>
+</footer>
 
 <script>
 var daily_confirmed = json_load("daily_confirmed.json");
