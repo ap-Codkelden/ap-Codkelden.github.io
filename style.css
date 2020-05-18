@@ -9,6 +9,26 @@ body {
   min-height: -webkit-fill-available;
 }
 
+a:hover {
+  position: relative;
+  text-decoration: none;
+  background-color: #ffdd00;
+}
+
+a:active {
+  color: black;
+}
+
+a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2;
+  margin-bottom: 4px;
+  left: 0px;
+  right: 0px;
+  border: 2px solid black;
+}
+
 .container {
   display: flex;
   flex-direction: column;
