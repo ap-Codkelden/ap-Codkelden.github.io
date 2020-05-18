@@ -9,20 +9,20 @@ body {
   min-height: -webkit-fill-available;
 }
 
-a:hover {
+.moz a:hover {
   position: relative;
   text-decoration: none;
   background-color: #ffdd00;
 }
 
-a:active {
+.moz a:active {
   color: black;
 }
 
-a:hover::after {
+.moz a:hover::after {
   content: "";
   position: absolute;
-  bottom: -2;
+  bottom: -4px;
   margin-bottom: 4px;
   left: 0px;
   right: 0px;
