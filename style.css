@@ -1,15 +1,91 @@
 body {
+  height: 100%;
   font-family: 'Roboto', sans-serif;
   font-size: 14pt;
   color: #2d3135;
   margin: 0px;
   padding: 0px;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+a:hover {
+  position: relative;
+  text-decoration: none;
+  background-color: #ffdd00;
+}
+
+a:active {
+  color: black;
+}
+
+a:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2;
+  margin-bottom: 4px;
+  left: 0px;
+  right: 0px;
+  border: 2px solid black;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 canvas {
 -moz-user-select: none;
 -webkit-user-select: none;
 -ms-user-select: none;
+}
+
+.numbers {
+   margin-top: 40px;
+   width: 60%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.numbers-container { 
+  display: flex;
+  flex-flow: row wrap;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+}
+
+.number-item {
+  display: flex; 
+  flex-direction: column;
+  border-top: 2px solid rgb(177, 180, 182);
+  padding-top: 20px;
+  grid-column: span 1;
+  margin-bottom: 2rem;
+  width: 40%;
+}
+
+.number-title {
+  margin-bottom: 5px;
+  color: black;
+  font-size: 22px;
+  font-weight: bold; 
+  display: block;
+}
+
+.number-number {
+  display: block;
+  margin-bottom: 10px;
+  color: rgb(54, 126, 147);
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.11;
+  align-self: center;
+}
+
+.number-text {
+  margin: 0px;
+  color: rgb(98, 106, 110);
 }
 
 .svg-logo {
@@ -19,8 +95,9 @@ canvas {
 }
 
 .title {
-    font-size: 22pt;
-    text-align: center;
+  font-size: 22pt;
+  text-align: center;
+  padding: 0 15px;
 }
 
 .text {
@@ -34,24 +111,23 @@ canvas {
 }
 
 .footer {
-  width: 100%;
+  display: flex;
   background: #f3f2f1;
   border-top: 1px #b1b4b6 solid;
   font-size: 12px;
-  color: #0b0c0c;
+  color: #555;
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-top: 15px;
+  padding: 15px 0;
+  margin-top: 20px;
   line-height: 1.25;
-  bottom: 0;
-  position: relative;
   clear: both;
 }
 
 .footer-text {
-  margin-left: 50px;
+  padding-left: 50px;
   text-align: left;
+  padding-right: 10px;
+  width: 100%;
 }
 
 .chart-title {
@@ -62,8 +138,19 @@ canvas {
 }
 
 .chart {
- width: 50%;
  margin: 0 auto;
+}
+
+@media only screen and (max-width: 1023px) {
+  .chart {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .chart {
+    width: 50%;
+  }
 }
 
 .chartjs-tooltip {

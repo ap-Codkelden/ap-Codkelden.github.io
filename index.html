@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
   <meta property="og:title" content="COVID-19 у Кривому Розі"/>
   <meta property="og:image:secure_url" content="https://img.icons8.com/emoji/256/000000/microbe.png"/>
   <meta property="og:description" content="Статистичні дані про переіг спалаху COVID-19 у місті Кривий Ріг" />
@@ -16,15 +17,35 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 class="title">Оперативний моніторинг ситуації довкола COVID-19</h1>
+  <div class="container">
+  <h1 class="title">Оперативний моніторинг ситуації довкола COVID-19 у Кривому Розі</h1>
   <div class="text">
   <p>На сторінці представлена інформація щодо виявлених випадків захворювання 
-  на COVID-19 по <b>місту Кривий Ріг</b> Дніпропетровської області.</p>
+  на COVID-19 по місту <b>Кривий Ріг</b> Дніпропетровської області.</p>
   <p>Інформаційний портал уряду, де оприлюднюється інформація 
   щодо коронавірусної хвороби 2019 в Україні, <a href="https://covid19.gov.ua/">знаходиться 
   тут</a>. Також можна переглянути сторінку з інформацією щодо коронавірусної 
   хвороби <a href="https://moz.gov.ua/koronavirus-2019-ncov">на офіційному сайті МОЗ.</a></p>
 </div>
+
+<section class="numbers">
+  <div class="numbers-container">
+    <div class="number-item">
+      <div class="number-title">Загальна кількість виявлених випадків</div>
+      <div id="total" class="number-number"></div>
+      <p class="number-text">Виявлено всього з початку спалаху <b>в місті</b></p>
+    </div>
+  <div class="number-item">
+    <div class="number-title">Виявлених випадків за добу</div>
+    <div id="daily" class="number-number"></div>
+    <p class="number-text">
+      Кількість виявлених випадків за 
+      останню добу, коли надійшла 
+      інформація
+    </p>
+  </div>
+  </div>
+</section>
 
 <div class="chart">
     <p class="chart-title">Загальна кількість виявлених випадків<br/>по місту Кривий Ріг</p>
@@ -65,9 +86,9 @@ function json_load(jsonfile) {
   });
   return json;
 };
-</script>
-<script>
+/* next */
 var total_confirmed = json_load("total_cases.json");
+$('#total').text(total_confirmed.data.slice(-1));
 var customTooltips = function(tooltip) {
       $(this._chart.canvas).css('cursor', 'pointer');
       var positionY = this._chart.canvas.offsetTop;
@@ -157,10 +178,11 @@ var chart_options = {
     data: data,
     options: chart_options
 });
-</script>
 
-<script>
+/* next */
+
 var daily_confirmed = json_load("daily_confirmed.json");
+$('#daily').text(daily_confirmed.data.slice(-1));
 var barChartData = {
     labels: daily_confirmed.labels,
     datasets: [{
@@ -214,6 +236,7 @@ var barChartData = {
           }
         });
 </script>
+</div>
 </body>
 </html>
 
