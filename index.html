@@ -39,11 +39,7 @@
   <div class="number-item">
     <div class="number-title">Виявлених випадків за добу</div>
     <div id="daily" class="number-number"></div>
-    <p class="number-text">
-      Кількість виявлених випадків за 
-      останню добу, коли надійшла 
-      інформація
-    </p>
+    <p class="number-text">Кількість виявлених випадків за останню добу</p>
   </div>
   </div>
 </section>
@@ -183,7 +179,16 @@ var chart_options = {
 /* next */
 
 var daily_confirmed = json_load("daily_confirmed.json");
-$('#daily').text(daily_confirmed.data.slice(-1));
+// остання дата день
+var daily_date = daily_confirmed.labels.slice(-1)[0]
+// остання дата всього
+var cumul_date = total_confirmed.labels.slice(-1)[0]
+if (cumul_date == daily_date) {
+    $('#daily').text(daily_confirmed.data.slice(-1));
+  } else {
+    $('#daily').text('0');
+}
+
 var barChartData = {
     labels: daily_confirmed.labels,
     datasets: [{
