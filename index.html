@@ -184,7 +184,7 @@ var daily_date = daily_confirmed.labels.slice(-1)[0]
 // остання дата всього
 var cumul_date = total_confirmed.labels.slice(-1)[0]
 if (cumul_date == daily_date) {
-    $('#daily').text(daily_confirmed.data.slice(-1));
+    $('#daily').text(daily_confirmed.data.slice(-1)[0]);
   } else {
     $('#daily').text('0');
 }
