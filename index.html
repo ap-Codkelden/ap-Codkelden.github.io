@@ -19,7 +19,10 @@
 </head>
 <body>
   <div class="container">
-  <h1 class="title">Оперативний моніторинг ситуації довкола COVID-19 у Кривому Розі</h1>
+    <div class="title">
+      <h1 class="title">Оперативний моніторинг ситуації довкола COVID-19 у Кривому Розі</h1>
+      <h2>(cтаном на <span id="title-date" title="Дата оновлення даних НСЗУ"></span>)</h2>
+    </div>
   <div class="text">
   <p>На сторінці представлена інформація щодо виявлених випадків захворювання 
   на COVID-19 по місту <b>Кривий Ріг</b> Дніпропетровської області.</p>
@@ -37,7 +40,7 @@
       <p class="number-text">Виявлено всього з початку спалаху <b>в місті</b></p>
     </div>
   <div class="number-item">
-    <div class="number-title">Виявлених випадків<br/>за добу</div>
+    <div class="number-title">Виявлених випадків за добу</div>
     <div id="daily" class="number-number"></div>
     <p class="number-text">Кількість виявлених випадків за останню добу</p>
   </div>
@@ -134,6 +137,7 @@ var chart_options = {
           drawBorder: false,
         },
         ticks: {
+          stepSize: 20,
           fontSize: 14,
           fontColor: '#1A2B2B',
           beginAtZero: true,
@@ -183,6 +187,7 @@ var daily_confirmed = json_load("daily_confirmed.json");
 var daily_date = daily_confirmed.labels.slice(-1)[0]
 // остання дата всього
 var cumul_date = total_confirmed.labels.slice(-1)[0]
+$('#title-date').text(moment(cumul_date).format('LL'));
 if (cumul_date == daily_date) {
     $('#daily').text(daily_confirmed.data.slice(-1)[0]);
   } else {
