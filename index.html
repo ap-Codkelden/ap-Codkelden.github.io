@@ -44,12 +44,23 @@
     <div id="daily" class="number-number"></div>
     <p class="number-text">Кількість виявлених випадків за останню добу</p>
   </div>
+  <div class="number-item">
+    <div class="number-title">Хворіє на звітну дату</div>
+    <div id="sick" class="number-number"></div>
+    <p class="number-text">Кількість осіб, що перебувають у лікарні або на самоізоляції</p>
+  </div>
   </div>
 </section>
 
 <div class="chart">
     <p class="chart-title">Загальна кількість виявлених випадків<br/>по місту Кривий Ріг</p>
     <canvas id="bar-chart"></canvas>
+    <div class="chartjs-tooltip"></div>
+</div>
+
+<div class="chart">
+    <p class="chart-title">Загальна кількість осіб, що хворіють по місту Кривий Ріг</p>
+    <canvas id="hosp-chart"></canvas>
     <div class="chartjs-tooltip"></div>
 </div>
 
@@ -171,6 +182,76 @@ var chart_options = {
               pointRadius: 1,
               pointHitRadius: 5,
                 data: total_confirmed.data
+                    }
+                    ]
+                  };
+  var chart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: chart_options
+});
+
+/* in hospitals */
+var total_hosp = json_load("hospital.json");
+$('#sick').text(total_hosp.data.slice(-1));
+var chart_font_size = window.innerWidth < 500 ? 11 : 14;
+var chart_options = {
+  responsive: true, 
+  legend: { display: false },
+  maintainAspectRatio: true,
+  scales: {
+    xAxes: [{
+     type: 'time',
+     time: {unit: 'day'},
+     labels: total_hosp.labels,
+     gridLines: {display: true,},
+     ticks: {
+          minRotation: 45,
+          fontSize: chart_font_size,
+          fontColor: '#1A2B2B',
+          autoSkip: false,
+          maxTicksLimit: 15,
+      },
+      }],
+      yAxes: [{
+        gridLines: {
+          drawBorder: false,
+        },
+        ticks: {
+          stepSize: 20,
+          fontSize: 14,
+          fontColor: '#1A2B2B',
+          beginAtZero: true,
+          userCallback: function(value, index, values) {
+            return value.toLocaleString();
+          },
+        },
+      }],
+    },
+    tooltips: {
+            enabled: false,
+            mode: 'index',
+            intersect: false,
+            custom: customTooltips
+          }
+};
+
+  var ctx = document.getElementById("hosp-chart");
+  var data = {
+    labels: total_hosp.labels,
+        datasets: [
+              {borderWidth: 2,
+              borderColor: '#367E93',
+              pointBorderColor: '#367E93',
+              pointBackgroundColor: '#fff',
+              pointBorderWidth: 3,
+              pointHoverRadius: 3,
+              pointHoverBackgroundColor: '#367E93',
+              pointHoverBorderColor: '#367E93',
+              pointHoverBorderWidth: 5,
+              pointRadius: 1,
+              pointHitRadius: 5,
+                data: total_hosp.data
                     }
                     ]
                   };
